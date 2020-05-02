@@ -89,7 +89,7 @@ for element in sorted_similar_movies:
     print(get_title_from_index(element[0]))
     print(element)
     i = i + 1
-    if i > 15:
+    if i > 6:
         break
 
 # evaluation
