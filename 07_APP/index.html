@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>MY App</title>
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        <meta name="author" content="Beshoy Bebawe" />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+        />
+        <!-- <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet"> -->
+        <!-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css"> -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <link href="./css/style.css" rel="stylesheet" />
+        <link href="./css/autocomplete_ui.css" rel="stylesheet" />
+    </head>
+
+    <body>
+        <div id="app" v-cloak>
+            <header class="fullHeader">
+                <div class="row no-gutters justify-content-center content">
+
+                        <div class="input-group">
+                            <input
+                                type="text"
+                                id="search-box"
+                                class="form-control search-form"
+                                v-model:value="searchKeyword"
+                                placeholder="Search for a movie"
+                                @keyup.enter.prevent="getRecommendations"
+                            />
+                            <span class="input-group-btn" style="width:39px">
+                                <button
+                                    type="button"
+                                    class="pull-right btn btn-default search-btn"
+                                    id="search-btn"
+                                    class="btn btn-outline-secondary border-left-0 rounded-0 rounded-right"
+                                    type="button"
+                                    @click.prevent="getRecommendations"
+                                    :disabled="validTitle == false"
+                                >
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                 
+                    <div
+                        class="col-12 alert alert-danger warning"
+                        role="alert"
+                        v-if="validTitle == false"
+                    >
+                        <i class="far fa-frown"></i> Sorry title not found, please try different title
+                    </div>
+                </div>
+            </header>
+            <!-- this will show our spinner -->
+            <img v-if="loading" class="spinner" src="./img/spinner.gif" />
+            <main>
+                <div id="recommendations">
+                    <div
+                        class="container-fluid movie-section"
+                        v-for="(movie, index) in movies"
+                    >
+                        <div class="container">
+                            <div class="row movie-row">
+                                <div class="col-12">
+                                    <div class="card text-white bg-dark">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-8">
+                                                <div class="card-body">
+                                                    <div v-if="index == 0">
+                                                        You Searched
+                                                    </div>
+                                                    <div v-else>
+                                                        We Recommend
+                                                    </div>
+
+                                                    <h5
+                                                        class="card-title movie-title"
+                                                    >
+                                                        {{ movie[6] }}
+                                                    </h5>
+                                                    <p class="card-text">
+                                                        <small
+                                                            class="text-muted"
+                                                            style="font-size: 16px;"
+                                                        >
+                                                            Released {{ movie[5]
+                                                            }}
+                                                        </small>
+                                                    </p>
+                                                    <p class="card-text">
+                                                        {{ movie[4] }}
+                                                    </p>
+                                                    <p class="card-text">
+                                                        <span class="info"
+                                                            >Genres</span
+                                                        >{{ movie[1] }}
+                                                    </p>
+                                                    <p class="card-text">
+                                                        <span class="info"
+                                                            >Actors</span
+                                                        >{{ movie[9] }}
+                                                    </p>
+                                                    <p class="card-text">
+                                                        <span class="info"
+                                                            >Director</span
+                                                        >{{ movie[7] }}
+                                                    </p>
+                                                    <p class="card-text">
+                                                        <span class="info"
+                                                            >Writer</span
+                                                        >{{ movie[8] }}
+                                                    </p>
+                                                    <p class="card-text">
+                                                        <span class="info"
+                                                            >Website</span>
+                                                            {{ movie[11]}}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 img-col">
+                                                <img
+                                                    class="bd-placeholder-img movie-img"
+                                                    :src="movie[10]"
+                                                    :alt="movie[6]"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <footer>
+                <div class="container-fluid">
+                    <div class="copyright">
+                        <small>&copy; Copyright 2020- Beshoy Bebawe</small>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <script src="./js/app.js"></script>
+    </body>
+</html>
