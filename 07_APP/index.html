@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>MY App</title>
+        <title>CB-Recys App</title>
         <meta
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -64,7 +64,7 @@
                 </div>
             </header>
             <!-- this will show our spinner -->
-            <img v-if="loading" class="spinner" src="./img/spinner.gif" />
+            <img v-if="loading" class="spinner" src="./img/spinner.gif" alt="loading spinner"/>
             <main>
                 <div id="recommendations">
                     <div
@@ -133,7 +133,7 @@
                                                 <img
                                                     class="bd-placeholder-img movie-img"
                                                     :src="movie[10]"
-                                                    :alt="movie[6]"
+                                                    v-bind:alt="movie[6]"
                                                 />
                                             </div>
                                         </div>

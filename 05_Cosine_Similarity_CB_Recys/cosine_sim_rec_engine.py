@@ -23,8 +23,8 @@ df = pd.read_csv("compressed_movie_dataset_v5.csv",  encoding="latin-1")
 ##################################################
 
 # Step 2: Select Features to base CB-RecSys
-features = ['title', 'keywords', 'actors', 'genres']
-
+# features = ['title', 'keywords', 'actors', 'genres']
+features = ['keywords', 'actors', 'genres']
 
 ##################################################
 
@@ -37,7 +37,8 @@ for feature in features:
 
 # function to combine movie features in one row (vector)
 def combine_features(row):
-    return row['title'] + " " + row['keywords'] + " " + row['actors'] + " " + row['genres']
+    # return row['title'] + " " + row['keywords'] + " " + row['actors'] + " " + row['genres']
+    return row['keywords'] + " " + row['actors'] + " " + row['genres']
 
 
 # apply combine features function to data frame, axis to combine vertically
@@ -59,7 +60,7 @@ count_matrix = vectorizer.fit_transform(df["combined_features"])
 cosine_sim = cosine_similarity(count_matrix)
 
 # test case
-movie_user_likes = "Avatar".lower()
+movie_user_likes = "ex machina".lower()
 
 ##################################################
 
@@ -86,10 +87,12 @@ print("----- Recommendations For", movie_user_likes)
 i = 0
 # skip first element
 for element in sorted_similar_movies:
+    i = i + 1
+    if i == 1:
+        continue
     print(get_title_from_index(element[0]))
     print(element)
-    i = i + 1
-    if i > 6:
+    if i > 5:
         break
 
 # evaluation

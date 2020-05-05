@@ -3,7 +3,7 @@ footer {
     color: white;
     text-align: center;
     height: 30px;
-    padding-top: -10px;
+    padding-top: 0px;
 }
 main {
     background-color: black;
@@ -59,15 +59,11 @@ header {
     z-index: 999;
 }
 .fullHeader {
-    /* background-image: url("./../img/header-bg.jpg");
-    border-bottom: 10px solid #222; */
-    /* min-height: 100vh; */
     min-height: calc(100vh - 30px);
     background-size: cover;
     background-position: center;
 }
 main {
-    /* background-color: #232323; */
     background-color: #000000;
 }
 
